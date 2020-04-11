@@ -1,6 +1,6 @@
 # use-contain
 
-> 
+>
 
 [![NPM](https://img.shields.io/npm/v/use-contain.svg)](https://www.npmjs.com/package/use-contain) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -13,16 +13,27 @@ npm install --save use-contain
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { useMyHook } from 'use-contain'
+import { useContain } from 'use-contain';
 
 const Example = () => {
-  const example = useMyHook()
+  const { dimensions, ref } = useContain({
+    aspectRatio: 16 / 9,
+  });
   return (
-    <div>{example}</div>
-  )
-}
+    <div ref={ref} style={{ width: 500, height: 500 }}>
+      <div
+        style={{
+          width: dimensions?.width || undefined,
+          height: dimensions?.height || undefined,
+        }}
+      >
+        {dimensions && `${dimensions.width} x ${dimensions.height}`}
+      </div>
+    </div>
+  );
+};
 ```
 
 ## License
