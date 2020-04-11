@@ -10,8 +10,8 @@ export let useContain = ({ aspectRatio = 1 / 1, ref } = {}) => {
   let [dimensions, setDimensions] = useState(null);
 
   // Use a fresh ref is none was provided
-  let newRef = useRef();
-  ref = typeof ref === 'undefined' ? newRef : ref;
+  let newRef = useRef(null);
+  ref = ref == null ? newRef : ref;
 
   // Get the bounding rect of the element
   let { rect } = useRect(ref);
