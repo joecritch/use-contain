@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useContain } from 'use-contain';
+import GitHubButton from 'react-github-btn';
 
 const App = () => {
   // Example 1
@@ -32,8 +33,16 @@ const App = () => {
           </div>
           <div className="app-creds">
             <p>
-              <a href="https://twitter.com/joecritch"> started by @joecritch</a>
+              <a href="https://twitter.com/joecritch">started by @joecritch</a>
             </p>
+            <GitHubButton
+              href="https://github.com/joecritch/use-contain"
+              data-color-scheme="no-preference: light; light: light; dark: dark;"
+              data-icon="octicon-star"
+              aria-label="Star ntkme/github-buttons on GitHub"
+            >
+              Star
+            </GitHubButton>
           </div>
         </div>
       </div>
