@@ -7,8 +7,6 @@ import { useRect } from './useRect';
  * `object-fit: contain` style
  */
 export let useContain = ({ aspectRatio = 1 / 1, ref } = {}) => {
-  let [dimensions, setDimensions] = useState(null);
-
   // Use a fresh ref is none was provided
   let newRef = useRef(null);
   ref = ref == null ? newRef : ref;
@@ -16,26 +14,29 @@ export let useContain = ({ aspectRatio = 1 / 1, ref } = {}) => {
   // Get the bounding rect of the element
   let { rect } = useRect(ref);
 
-  useLayoutEffect(() => {
-    let availableWidth = rect.width;
-    let availableHeight = rect.height;
-    let width, height;
+  // useLayoutEffect(() => {
+  let availableWidth = rect.width;
+  let availableHeight = rect.height;
+  let width, height;
 
-    if (availableWidth / availableHeight > aspectRatio) {
-      // Constrain by height
-      height = availableHeight;
-      width = availableHeight * aspectRatio;
-    } else {
-      // Constrain by width
-      width = availableWidth;
-      height = availableWidth / aspectRatio;
-    }
+  if (availableWidth / availableHeight > aspectRatio) {
+    // Constrain by height
+    height = availableHeight;
+    width = availableHeight * aspectRatio;
+  } else {
+    // Constrain by width
+    width = availableWidth;
+    height = availableWidth / aspectRatio;
+  }
 
-    setDimensions({
+  let dimensions = null;
+
+  if (width && height) {
+    dimensions = {
       width,
       height,
-    });
-  }, [rect, aspectRatio]);
+    };
+  }
 
   return {
     ref,
