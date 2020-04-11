@@ -6,8 +6,16 @@
 
 ## Install
 
+npm:
+
 ```bash
 npm install --save use-contain
+```
+
+yarn:
+
+```bash
+yarn add use-contain
 ```
 
 ## Usage
