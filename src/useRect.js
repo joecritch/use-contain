@@ -15,7 +15,11 @@ export const useRect = (ref) => {
     throw new Error('No ref provided to useRect.');
   }
 
-  let [rect, setRect] = useState(emptyRect);
+  let [rect, setRect] = useState(null);
+
+  if (rect == null) {
+    rect = getRect(ref ? ref.current : null);
+  }
 
   let handleResize = useCallback(() => {
     if (ref.current) {
